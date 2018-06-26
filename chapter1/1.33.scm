@@ -43,5 +43,5 @@
  (define (gcd? a b)
       (= (gcd a b) 1))
       
-  (define (relatively-primes-sum start end)
-     (filtered-accumulate (lambda (x) (gcd? x n)) + 0 (lambda (x) x) start (lambda (x) (+ x 1)) end))
+  (define (relatively-primes-sum n)
+     (filtered-accumulate (lambda (x) (gcd? x n)) + 0 (lambda (x) x) 2 (lambda (x) (+ x 1)) n))
