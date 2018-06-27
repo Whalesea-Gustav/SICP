@@ -1,0 +1,5 @@
+(define (repeat f times)
+  (lambda (x) (define (aux times)
+                (cond ((= times 1) (f x))
+                      (else (f (aux (- times 1))))))
+               (aux times)))
