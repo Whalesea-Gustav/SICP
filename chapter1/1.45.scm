@@ -42,7 +42,7 @@
 ;; answer
 ((damp-nth-root 10 2) 10)
 使得计算 n 次方根的不动点收敛，最少需要 ⌊lgn⌋ 次平均阻尼
-
+定义 [lg n]
 (define (lg n)
     (cond ((> (/ n 2) 1)
             (+ 1 (lg (/ n 2))))
@@ -50,6 +50,6 @@
             0)
           (else
             1)))
-            
+运用curring 处理 (lg n)             
 (define (nth-root n)
     (damped-nth-root n (lg n)))            
