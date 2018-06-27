@@ -1,0 +1,16 @@
+(define (cubic a b c)
+  (lambda (x) (+ (* x x x)
+                 (* a x x)
+                 (* b x)
+                 c)))
+
+(newtwons-method (cubic a b c ) 1.0)
+
+(define (newtwons-method f guess)
+  (define (deriv f dx)
+        (lambda (x) (/ (+ (f (+ x dx)) (f x)
+                       dx))
+  (define (newtons-method-transform g guess)
+         (- (g guess)
+            (/ (g guess) ((deriv guess dx) guess))))
+  (fixed-point (newtons-method-transform f) guess))
