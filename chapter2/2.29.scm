@@ -62,3 +62,51 @@
 (define balance-mobile (make-mobile (make-branch 10 10)
                                           (make-branch 10 10)))
 (mobile-balance? balance-mobile)
+
+
+
+
+
+
+(define (make-mobile left right)
+  (cons left right))
+(define (make-branch length structure)
+  (cons length structure))
+(define left-branch car)
+(define right-branch cdr)
+(define branch-length car)
+(define branch-structure cdr)
+
+(define balance (make-mobile (make-branch 10 10) (make-branch 10 10)))
+(define mobile2 (make-mobile (make-branch 10 10) (make-branch 10 balance)))
+
+(define (total-weight mobile)
+  (+ (branch-weight (left-branch mobile))
+     (branch-weight (right-branch mobile))))
+
+(define (hang-over-another-mobile? branch)
+  (pair? (branch-structure branch)))
+
+(define (branch-weight branch)
+  (cond ((hang-over-another-mobile? branch) (total-weight (branch-structure branch)))
+        (else (branch-structure branch))))
+
+(define (mobile-length mobile)
+  (+ (sum-branch-length (left-branch mobile))
+     (sum-branch-length (right-branch mobile))))
+
+(define (sum-branch-length branch)
+  (cond ((hang-over-another-mobile? branch) (+ (mobile-length (branch-structure branch))
+                                               (branch-length branch)))
+        (else (branch-length branch))))
+
+(define branch1 (make-branch 10 10))
+(define branch2 (make-branch 10 (make-mobile (make-branch 10 20) (make-branch 10 10))))
+
+(define (branch-torque branch)
+  (* (branch-weight branch)
+     (sum-branch-length branch)))
+
+(define (mobile-balance? mobile)
+  (= (branch-torque (left-branch mobile))
+     (branch-torque (right-branch mobile))))
