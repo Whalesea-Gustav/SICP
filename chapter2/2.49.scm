@@ -4,7 +4,7 @@
 ;;http://planet.racket-lang.org/package-source/soegaard/sicp.plt/2/1/planet-docs/sicp-manual/index.html#(part._.Frames)
 ;;paint函数作用在painter上, 自动生成图像
 ;;painter是以frame作为参数的过程, 自动在frame上填充出(经过向量变换的)图像
-
+;;为方便显示, 顶点设置为4分点
 ;;outline->painter
 
 ;;apex
